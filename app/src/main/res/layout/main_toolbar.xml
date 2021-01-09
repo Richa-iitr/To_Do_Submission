@@ -23,7 +23,7 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         />
 
     <ImageView

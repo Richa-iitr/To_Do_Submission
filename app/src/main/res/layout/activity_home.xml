@@ -6,28 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".MainActivity">
-
+    tools:context=".Home">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <include
             layout="@layout/main_toolbar"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="!!WELCOME!!"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            tools:ignore="RtlCompat"
-           android:gravity="center"/>
-
-
+        <include
+            layout="@layout/inpiut_home"/>
     </LinearLayout>
-
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
@@ -37,6 +26,7 @@
         <include
             layout="@layout/main_nav_drawer"/>
     </RelativeLayout>
+
 
 
 

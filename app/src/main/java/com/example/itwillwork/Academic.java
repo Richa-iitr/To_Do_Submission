@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Academic extends AppCompatActivity {
@@ -28,12 +32,13 @@ public class Academic extends AppCompatActivity {
 
 
         lvItems = (ListView) findViewById(R.id.lvItems);
-        items = new ArrayList<String>();
+        readItems();
+        //items = new ArrayList<String>();
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+        //items.add("First Item");
+        //items.add("Second Item");
         setupListViewListener();
     }
 
@@ -78,6 +83,7 @@ public class Academic extends AppCompatActivity {
                         items.remove(pos);
                         // Refresh the adapter
                         itemsAdapter.notifyDataSetChanged();
+                        writeItems();
                         // Return true consumes the long click event (marks it handled)
                         return true;
                     }
@@ -85,10 +91,30 @@ public class Academic extends AppCompatActivity {
                 });
     }
 
-    public void onAddItem(View v) {
+    public void onAddItem_academic(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
         itemsAdapter.add(itemText);
         etNewItem.setText("");
+        writeItems();
+    }
+    private void readItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "academic.txt");
+        try {
+            items = new ArrayList<String>(FileUtils.readLines(todoFile));
+        } catch (IOException e) {
+            items = new ArrayList<String>();
+        }
+    }
+
+    private void writeItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "academic.txt");
+        try {
+            FileUtils.writeLines(todoFile, items);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
