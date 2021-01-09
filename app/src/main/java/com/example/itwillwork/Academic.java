@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -81,6 +82,7 @@ public class Academic extends AppCompatActivity {
                                                    View item, int pos, long id) {
                         // Remove the item within array at position
                         items.remove(pos);
+                        Toast.makeText(Academic.this, "Academic Task Finished!", Toast.LENGTH_SHORT).show();
                         // Refresh the adapter
                         itemsAdapter.notifyDataSetChanged();
                         writeItems();
